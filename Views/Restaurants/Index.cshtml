@@ -1,0 +1,35 @@
+﻿@model IPagedList<Empleados.Entities.Restaurant>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="pagedList">
+    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page}),
+    PagedListRenderOptions.MinimalWithItemCountText)
+</div>
+
+<div style="background-color:saddlebrown">
+    <form method="get">
+        <input type="text" name="search" autocomplete="on" border="6" style="background-color:gray" />
+        <input type="submit" value="Search">
+        @Html.ActionLink("Create new Restaurant", "Create");
+        
+    </form>
+</div>
+@foreach (var item in Model)
+{
+    <div class="item">
+
+        <div><b>RestaurantID:</b><p>@item.Id</p></div>
+        <div><b>RestaurantName:</b><p id="pname">@item.Name</p> </div>
+        <div><b>RestaurantCity:</b> <p>@item.City</p></div>
+        <div><b>RestaurantCountry:</b> <p>@item.Country</p></div>
+        <div style="border-bottom:solid"><p>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) | @Html.ActionLink("reviews", "Index", "reviews", new { id = item.Id }, null) |@Html.ActionLink("Delete", "Delete", new { id = item.Id })</p> </div>
+    </div>
+
+    }
+
+
+

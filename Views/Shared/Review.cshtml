@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Empleados.Entities.Restaurant>
+
+<div class="review">
+    <h4>@Mode</h4>
+    <span>@Model.name</span>
+    <p>The Best Review</p>
+    <p>@Model.city,@Model.country</p>
+    <span class="right">
+
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id })
+    </span>
+</div>

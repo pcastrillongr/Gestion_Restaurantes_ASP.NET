@@ -1,0 +1,36 @@
+﻿@model IPagedList<Empleados.Entities.RestaurantReview>
+ 
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>The last Reviews</h2>
+<div class="pagedList">
+    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page }),
+        PagedListRenderOptions.MinimalWithItemCountText)
+</div>
+<div class="review">
+    @Html.ActionLink("Create New", "Create",new { id = ViewBag.id });
+
+</div>
+@if (Model != null)
+{
+        foreach (var review in Model)
+        {
+        <div>
+            <h4>ReviewID:@review.id</h4>
+            <span>Rating: @review.rating</span>
+            <p> RestaurantID: @review.restaurantId , Comments: @review.body</p>
+            <span class="right">
+
+                @Html.ActionLink("Edit", "Edit", new { id = @review.id }) | @Html.ActionLink("Delete","Delete", new { id = @review.id })
+            </span>
+        </div>
+
+        }
+}
+
+        <p>
+        </p>
+
